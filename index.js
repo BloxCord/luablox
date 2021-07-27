@@ -18,7 +18,7 @@ app.get('/Shout', function(req, res) {
   const shoutstring = req.query.shoutstring.replace("+", " ")
   if(!groupid || !cookie || !target) return
   noblox.setCookie(cookie).then(() => {
-    noblox.shout(groupid, shoutstring).catch("There was an error while shouting at that specific group.")
+    noblox.shout(groupid, shoutstring).catch(() => {"There was an error while shouting at that specific group."})
   }).catch(() => {
     console.warn("An invalid cookie was provided.")
   })
