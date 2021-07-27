@@ -16,6 +16,7 @@ app.get('/Shout', function(req, res) {
   const groupid = req.query.groupid
   const cookie = req.query.cookie
   const shoutstring = req.query.shoutstring.replace("+", " ")
+  if(!groupid || !cookie || !target) return
   noblox.setCookie(cookie).then(() => {
     noblox.shout(groupid, shoutstring).catch("There was an error while shouting at that specific group.")
   }).catch(() => {
@@ -28,6 +29,7 @@ app.get('/setRank', function(req, res) {
   const cookie = req.query.cookie
   const idtoRank = req.query.rankid
   const target = req.query.target
+  if(!groupid || !cookie || !target) return
   noblox.setCookie(cookie).then(() => {
     noblox.setRank(groupid, target, idtoRank).catch(() => {
       console.warn("There was an error while ranking that user.")
@@ -41,6 +43,7 @@ app.get('/Promote', function(req, res) {
   const groupid = req.query.groupid
   const cookie = req.query.cookie
   const target = req.query.target
+  if(!groupid || !cookie || !target) return
   noblox.setCookie(cookie).then(() => {
     noblox.promote(groupid, target).catch(() => {
       console.warn("There was an error while ranking that user.")
